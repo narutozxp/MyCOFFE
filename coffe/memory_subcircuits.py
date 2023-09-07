@@ -353,13 +353,13 @@ def generate_level_shifter(spice_filename, circuit_name):
 	spice_file.write(".SUBCKT " + circuit_name + " n_in n_out n_vdd n_vddlp n_gnd\n")
 	spice_file.write("X_inv" + circuit_name + "_1 n_in n_1_1 n_vdd n_gnd inv Wn=inv_level_shifter_1_nmos Wp=inv_level_shifter_1_pmos\n")
 	spice_file.write("X_inv" + circuit_name + "_2 n_1_1 n_1_2 n_vdd n_gnd inv Wn=inv_level_shifter_1_nmos Wp=inv_level_shifter_1_pmos\n")
-	spice_file.write("M0 n_gnd n_1_1 n_1_3 n_gnd nmos_lp L=22n W=ptran_level_shifter_2_nmos ") 
+	spice_file.write("XM0 n_gnd n_1_1 n_1_3 n_gnd hvtnch L=22n W=ptran_level_shifter_2_nmos ") 
 	spice_file.write("AS=ptran_level_shifter_2_nmos*trans_diffusion_length AD=ptran_level_shifter_2_nmos*trans_diffusion_length PS=ptran_level_shifter_2_nmos+2*trans_diffusion_length PD=ptran_level_shifter_2_nmos+2*trans_diffusion_length\n")
-	spice_file.write("M1 n_gnd n_1_2 n_1_4 n_gnd nmos_lp L=22n W=ptran_level_shifter_2_nmos ") 
+	spice_file.write("XM1 n_gnd n_1_2 n_1_4 n_gnd hvtnch L=22n W=ptran_level_shifter_2_nmos ") 
 	spice_file.write("AS=ptran_level_shifter_2_nmos*trans_diffusion_length AD=ptran_level_shifter_2_nmos*trans_diffusion_length PS=ptran_level_shifter_2_nmos+2*trans_diffusion_length PD=ptran_level_shifter_2_nmos+2*trans_diffusion_length\n")
-	spice_file.write("M2 n_1_3 n_1_4 n_vddlp n_vddlp pmos_lp L=22n W=ptran_level_shifter_2_nmos ") 
+	spice_file.write("XM2 n_1_3 n_1_4 n_vddlp n_vddlp hvtpch L=22n W=ptran_level_shifter_2_nmos ") 
 	spice_file.write("AS=ptran_level_shifter_3_pmos*trans_diffusion_length AD=ptran_level_shifter_3_pmos*trans_diffusion_length PS=ptran_level_shifter_3_pmos+2*trans_diffusion_length PD=ptran_level_shifter_3_pmos+2*trans_diffusion_length\n")
-	spice_file.write("M3 n_1_4 n_1_3 n_vddlp n_vddlp pmos_lp L=22n W=ptran_level_shifter_3_pmos ") 
+	spice_file.write("XM3 n_1_4 n_1_3 n_vddlp n_vddlp hvtpch L=22n W=ptran_level_shifter_3_pmos ") 
 	spice_file.write("AS=ptran_level_shifter_3_pmos*trans_diffusion_length AD=ptran_level_shifter_3_pmos*trans_diffusion_length PS=ptran_level_shifter_3_pmos+2*trans_diffusion_length PD=ptran_level_shifter_3_pmos+2*trans_diffusion_length\n")
 	spice_file.write("X_inv" + circuit_name + "_3 n_1_4 n_out n_vddlp n_gnd inv_lp Wn=inv_level_shifter_1_nmos Wp=inv_level_shifter_1_pmos\n")
 
@@ -393,41 +393,41 @@ def generate_mtj_sa_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + "_sa n_inp n_inp_ref n_se1 n_se2 n_out n_vclamp n_vref n_reb n_ref n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_1_1 n_se1 n_vdd n_vdd pmos_lp_mtj L=22n W=300n ") 
+	spice_file.write("XM0 n_1_1 n_se1 n_vdd n_vdd hvtpch_mtj L=22n W=300n ") 
 	spice_file.write("AS=300n*trans_diffusion_length AD=300n*trans_diffusion_length PS=300n+2*trans_diffusion_length PD=300n+2*trans_diffusion_length\n")	
-	spice_file.write("M1 n_1_2 n_se1 n_vdd n_vdd pmos_lp_mtj L=22n W=300n ")
+	spice_file.write("XM1 n_1_2 n_se1 n_vdd n_vdd hvtpch_mtj L=22n W=300n ")
 	spice_file.write("AS=300n*trans_diffusion_length AD=300n*trans_diffusion_length PS=300n+2*trans_diffusion_length PD=300n+2*trans_diffusion_length\n")
 
 	spice_file.write("X_invmtjsa_6 n_1_1 n_out n_vdd n_gnd inv_lp_mtj Wn=inv_mtj_subcircuits_mtjsa_6_nmos Wp=inv_mtj_subcircuits_mtjsa_6_pmos\n")
 	spice_file.write("X_invmtjsa_6d n_1_2 n_out2 n_vdd n_gnd inv_lp_mtj Wn=inv_mtj_subcircuits_mtjsa_6_nmos Wp=inv_mtj_subcircuits_mtjsa_6_pmos\n")
 
-	spice_file.write("M2 n_1_1 n_1_2 n_vdd n_vdd pmos_lp_mtj L=65n W=100n ") 
+	spice_file.write("XM2 n_1_1 n_1_2 n_vdd n_vdd hvtpch_mtj L=65n W=100n ") 
 	spice_file.write("AS=100n*trans_diffusion_length AD=100n*trans_diffusion_length PS=100n+2*trans_diffusion_length PD=100n+2*trans_diffusion_length\n")	
-	spice_file.write("M3 n_1_2 n_1_1 n_vdd n_vdd pmos_lp_mtj L=65n W=100n ")
+	spice_file.write("XM3 n_1_2 n_1_1 n_vdd n_vdd hvtpch_mtj L=65n W=100n ")
 	spice_file.write("AS=100n*trans_diffusion_length AD=100n*trans_diffusion_length PS=100n+2*trans_diffusion_length PD=100n+2*trans_diffusion_length\n")
 
-	spice_file.write("M4 n_1_1 n_1_2 n_1_5 n_gnd nmos_lp_mtj L=65n W=800n ")
+	spice_file.write("XM4 n_1_1 n_1_2 n_1_5 n_gnd hvtnch_mtj L=65n W=800n ")
 	spice_file.write("AS=800n*trans_diffusion_length AD=800n*trans_diffusion_length PS=800n+2*trans_diffusion_length PD=800n+2*trans_diffusion_length\n")	
-	spice_file.write("M5 n_1_2 n_1_1 n_1_6 n_gnd nmos_lp_mtj L=65n W=800n ")
+	spice_file.write("XM5 n_1_2 n_1_1 n_1_6 n_gnd hvtnch_mtj L=65n W=800n ")
 	spice_file.write("AS=800n*trans_diffusion_length AD=800n*trans_diffusion_length PS=800n+2*trans_diffusion_length PD=800m+2*trans_diffusion_length\n")	
 
-	spice_file.write("M6 n_1_5 n_se2 n_gnd n_gnd nmos_lp_mtj L=65n W=250n ")
+	spice_file.write("XM6 n_1_5 n_se2 n_gnd n_gnd hvtnch_mtj L=65n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M7 n_1_6 n_se2 n_gnd n_gnd nmos_lp_mtj L=65n W=250n ")
+	spice_file.write("XM7 n_1_6 n_se2 n_gnd n_gnd hvtnch_mtj L=65n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")
 
-	spice_file.write("M8 n_1_5 n_vref n_1_7 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM8 n_1_5 n_vref n_1_7 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=165n*trans_diffusion_length AD=165n*trans_diffusion_length PS=165n+2*trans_diffusion_length PD=165n+2*trans_diffusion_length\n")	
-	spice_file.write("M9 n_1_6 n_vclamp n_1_8 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM9 n_1_6 n_vclamp n_1_8 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=165n*trans_diffusion_length AD=165n*trans_diffusion_length PS=165n+2*trans_diffusion_length PD=165n+2*trans_diffusion_length\n")
 
-	spice_file.write("M10 n_1_7 n_ref n_inp_ref n_gnd nmos_lp_mtj L=22n W=200n ")
+	spice_file.write("XM10 n_1_7 n_ref n_inp_ref n_gnd hvtnch_mtj L=22n W=200n ")
 	spice_file.write("AS=200n*trans_diffusion_length AD=200n*trans_diffusion_length PS=200n+2*trans_diffusion_length PD=200n+2*trans_diffusion_length\n")	
-	spice_file.write("M11 n_1_8 n_ref n_inp n_gnd nmos_lp_mtj L=22n W=200n ")
+	spice_file.write("XM11 n_1_8 n_ref n_inp n_gnd hvtnch_mtj L=22n W=200n ")
 	spice_file.write("AS=200n*trans_diffusion_length AD=200n*trans_diffusion_length PS=200n+2*trans_diffusion_length PD=200n+2*trans_diffusion_length\n")	
-	spice_file.write("M12 n_1_7 n_reb n_inp n_gnd nmos_lp_mtj L=22n W=200n ")
+	spice_file.write("XM12 n_1_7 n_reb n_inp n_gnd hvtnch_mtj L=22n W=200n ")
 	spice_file.write("AS=200n*trans_diffusion_length AD=200n*trans_diffusion_length PS=200n+2*trans_diffusion_length PD=200n+2*trans_diffusion_length\n")	
-	spice_file.write("M13 n_1_8 n_reb n_inp_ref n_gnd nmos_lp_mtj L=22n W=200n\ ")
+	spice_file.write("XM13 n_1_8 n_reb n_inp_ref n_gnd hvtnch_mtj L=22n W=200n\ ")
 	spice_file.write("AS=200n*trans_diffusion_length AD=200n*trans_diffusion_length PS=200n+2*trans_diffusion_length PD=200n+2*trans_diffusion_length\n")	
 	spice_file.write(".ENDS\n\n\n")
 
@@ -462,13 +462,13 @@ def generate_mtj_writedriver_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + "_writedriver n_in n_we n_out n_vneg n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_1_1 n_we_b n_vdd n_vdd pmos_lp_mtj L=22n W=600n ") 
+	spice_file.write("XM0 n_1_1 n_we_b n_vdd n_vdd hvtpch_mtj L=22n W=600n ") 
 	spice_file.write("AS=600n*trans_diffusion_length AD=600n*trans_diffusion_length PS=600n+2*trans_diffusion_length PD=600n+2*trans_diffusion_length\n")	
-	spice_file.write("M1 n_out n_in n_1_1 n_vdd pmos_lp_mtj L=22n W=600n ")
+	spice_file.write("XM1 n_out n_in n_1_1 n_vdd hvtpch_mtj L=22n W=600n ")
 	spice_file.write("AS=600n*trans_diffusion_length AD=600n*trans_diffusion_length PS=600n+2*trans_diffusion_length PD=600n+2*trans_diffusion_length\n")	
-	spice_file.write("M2 n_out n_in n_1_2 n_gnd nmos_lp_mtj L=22n W=600n ") 
+	spice_file.write("XM2 n_out n_in n_1_2 n_gnd hvtnch_mtj L=22n W=600n ") 
 	spice_file.write("AS=600n*trans_diffusion_length AD=600n*trans_diffusion_length PS=600n+2*trans_diffusion_length PD=600n+2*trans_diffusion_length\n")	
-	spice_file.write("M3 n_1_2 n_we n_vneg n_gnd nmos_lp_mtj L=22n W=600n ")
+	spice_file.write("XM3 n_1_2 n_we n_vneg n_gnd hvtnch_mtj L=22n W=600n ")
 	spice_file.write("AS=600n*trans_diffusion_length AD=600n*trans_diffusion_length PS=600n+2*trans_diffusion_length PD=600n+2*trans_diffusion_length\n")	
 	spice_file.write("X_inv" + circuit_name + "_1 n_we n_we_b n_vdd n_gnd inv_lp_mtj Wn=45n Wp=90n\n")
 
@@ -502,11 +502,11 @@ def generate_mtj_cs_lp(spice_filename, circuit_name):
 	spice_file.write("* " + circuit_name + " subcircuit MTJ coulmn selector and pull down \n")
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + "_cs n_in n_out n_ctrl n_ctrl_b n_vdd n_gnd\n")
-	spice_file.write("M0 n_in n_ctrl n_out n_vdd pmos_lp_mtj L=22n W=600n ")
+	spice_file.write("XM0 n_in n_ctrl n_out n_vdd hvtpch_mtj L=22n W=600n ")
 	spice_file.write("AS=600n*trans_diffusion_length AD=600n*trans_diffusion_length PS=600n+2*trans_diffusion_length PD=600n+2*trans_diffusion_length\n")	
-	spice_file.write("M1 n_out n_ctrl_b n_in n_gnd nmos_lp_mtj L=22n W=600n ") 
+	spice_file.write("XM1 n_out n_ctrl_b n_in n_gnd hvtnch_mtj L=22n W=600n ") 
 	spice_file.write("AS=600n*trans_diffusion_length AD=600n*trans_diffusion_length PS=600n+2*trans_diffusion_length PD=600n+2*trans_diffusion_length\n")	
-	spice_file.write("M2 n_out n_ctrl n_gnd n_gnd nmos_lp_mtj L=22n W=ptran_mtj_subcircuits_mtjcs_0_nmos ")
+	spice_file.write("XM2 n_out n_ctrl n_gnd n_gnd hvtnch_mtj L=22n W=ptran_mtj_subcircuits_mtjcs_0_nmos ")
 	spice_file.write("AS=ptran_mtj_subcircuits_mtjcs_0_nmos*trans_diffusion_length AD=ptran_mtj_subcircuits_mtjcs_0_nmos*trans_diffusion_length PS=ptran_mtj_subcircuits_mtjcs_0_nmos+2*trans_diffusion_length PD=ptran_mtj_subcircuits_mtjcs_0_nmos+2*trans_diffusion_length\n")	
 
 	spice_file.write(".ENDS\n\n\n")
@@ -539,9 +539,9 @@ def generate_mtj_memorycell_high_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT mtjhigh n_wl1 n_wl2 n_bl1 n_bl2  n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_bl1 n_wl1 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM0 n_bl1 n_wl1 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")	
-	spice_file.write("M1 n_bl2 n_wl2 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM1 n_bl2 n_wl2 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")
 	spice_file.write("Rmtj n_1_1 n_gnd 'mtj_worst_high'\n")
 
@@ -565,9 +565,9 @@ def generate_mtj_memorycell_low_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT mtjlow n_wl1 n_wl2 n_bl1 n_bl2  n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_bl1 n_wl1 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ") 
+	spice_file.write("XM0 n_bl1 n_wl1 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ") 
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")
-	spice_file.write("M1 n_bl2 n_wl2 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM1 n_bl2 n_wl2 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")	
 	spice_file.write("Rmtj n_1_1 n_gnd 'mtj_worst_low' \n")
 
@@ -591,9 +591,9 @@ def generate_mtj_memorycell_reference_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_wl1 n_wl2 n_bl1 n_bl2 n_dummy1 n_dummy2 n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_bl1 n_wl1 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ") 
+	spice_file.write("XM0 n_bl1 n_wl1 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ") 
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")
-	spice_file.write("M1 n_bl2 n_wl2 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM1 n_bl2 n_wl2 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")	
 	spice_file.write("Rmtj n_1_1 n_gnd 'mtj_nominal_low' \n")
 
@@ -617,9 +617,9 @@ def generate_mtj_memorycellh_reference_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + "h n_wl1 n_wl2 n_bl1 n_bl2 n_dummy1 n_dummy2 n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_bl1 n_wl1 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ") 
+	spice_file.write("XM0 n_bl1 n_wl1 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ") 
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")
-	spice_file.write("M1 n_bl2 n_wl2 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM1 n_bl2 n_wl2 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")	
 	spice_file.write("Rmtj n_1_1 n_gnd 'mtj_nominal_high' \n")
 
@@ -643,9 +643,9 @@ def generate_mtj_memorycell_reference_lp_target(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT memory_cell_ref n_wl1 n_wl2 n_bl1 n_bl2 n_dummy1 n_dummy2 n_vdd n_gnd\n")
 
-	spice_file.write("M0 n_bl1 n_wl1 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ") 
+	spice_file.write("XM0 n_bl1 n_wl1 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ") 
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")
-	spice_file.write("M1 n_bl2 n_wl2 n_1_1 n_gnd nmos_lp_mtj L=22n W=165n ")
+	spice_file.write("XM1 n_bl2 n_wl2 n_1_1 n_gnd hvtnch_mtj L=22n W=165n ")
 	spice_file.write("AS=6.6f AD=6.6f PS=245n PD=245n\n")	
 	spice_file.write("Rmtj n_1_1 n_gnd 2118 \n")
 
@@ -669,16 +669,16 @@ def generate_memorycell(spice_filename, circuit_name):
 	spice_file.write("* " + circuit_name + " subcircuit memory sram cell \n")
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_wl1 n_wl2 n_bl1 n_bl2 n_br1 n_br2 n_vdd n_gnd\n")
-	spice_file.write("M1 n_1_1 n_1_2 n_gnd n_gnd nmos L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD
-	spice_file.write("M0 n_1_2 n_1_1 n_gnd n_gnd nmos L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD 
+	spice_file.write("XM1 n_1_1 n_1_2 n_gnd n_gnd lvtnch L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD
+	spice_file.write("XM0 n_1_2 n_1_1 n_gnd n_gnd lvtnch L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD 
 
-	spice_file.write("M3 n_1_1 n_1_2 n_vdd n_vdd pmos L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
-	spice_file.write("M2 n_1_2 n_1_1 n_vdd n_vdd pmos L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
+	spice_file.write("XM3 n_1_1 n_1_2 n_vdd n_vdd lvtpch L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
+	spice_file.write("XM2 n_1_2 n_1_1 n_vdd n_vdd lvtpch L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
 
-	spice_file.write("M4 n_bl1 n_wl1 n_1_2 n_gnd nmos L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
-	spice_file.write("M5 n_br1 n_wl1 n_1_1 n_gnd nmos L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
-	spice_file.write("M6 n_bl2 n_wl2 n_1_1 n_gnd nmos L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
-	spice_file.write("M7 n_br2 n_wl2 n_1_2 n_gnd nmos L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
+	spice_file.write("XM4 n_bl1 n_wl1 n_1_2 n_gnd lvtnch L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
+	spice_file.write("XM5 n_br1 n_wl1 n_1_1 n_gnd lvtnch L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
+	spice_file.write("XM6 n_bl2 n_wl2 n_1_1 n_gnd lvtnch L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
+	spice_file.write("XM7 n_br2 n_wl2 n_1_2 n_gnd lvtnch L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
 
 	spice_file.write(".ENDS\n\n\n")
 
@@ -700,16 +700,16 @@ def generate_memorycell_lp(spice_filename, circuit_name):
 	spice_file.write("* " + circuit_name + " subcircuit low power memory sram cell \n")
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_wl1 n_wl2 n_bl1 n_bl2 n_br1 n_br2 n_vdd n_gnd\n")
-	spice_file.write("M1 n_1_1 n_1_2 n_gnd n_gnd nmos_lp L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD
-	spice_file.write("M0 n_1_2 n_1_1 n_gnd n_gnd nmos_lp L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD 
+	spice_file.write("XM1 n_1_1 n_1_2 n_gnd n_gnd hvtnch L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD
+	spice_file.write("XM0 n_1_2 n_1_1 n_gnd n_gnd hvtnch L=22n W=115n AD=6.9f PD=295n AS=4.6f PS=195n\n") #PD 
 
-	spice_file.write("M3 n_1_1 n_1_2 n_vdd n_vdd pmos_lp L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
-	spice_file.write("M2 n_1_2 n_1_1 n_vdd n_vdd pmos_lp L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
+	spice_file.write("XM3 n_1_1 n_1_2 n_vdd n_vdd hvtpch L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
+	spice_file.write("XM2 n_1_2 n_1_1 n_vdd n_vdd hvtpch L=22n W=45n AD=2.7f PD=210n AS=1.8f PS=125n\n") #PU
 
-	spice_file.write("M4 n_bl1 n_wl1 n_1_2 n_gnd nmos_lp L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
-	spice_file.write("M5 n_br1 n_wl1 n_1_1 n_gnd nmos_lp L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
-	spice_file.write("M6 n_bl2 n_wl2 n_1_1 n_gnd nmos_lp L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
-	spice_file.write("M7 n_br2 n_wl2 n_1_2 n_gnd nmos_lp L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
+	spice_file.write("XM4 n_bl1 n_wl1 n_1_2 n_gnd hvtnch L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
+	spice_file.write("XM5 n_br1 n_wl1 n_1_1 n_gnd hvtnch L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
+	spice_file.write("XM6 n_bl2 n_wl2 n_1_1 n_gnd hvtnch L=22n W=55n AD=2.2f PD=135n AS=3.3f PS=230n\n") #PG
+	spice_file.write("XM7 n_br2 n_wl2 n_1_2 n_gnd hvtnch L=22n W=55n AD=2.2f PD=135n AS=1.1f PS=40n\n") #PG
 	spice_file.write(".ENDS\n\n\n")
 
 	spice_file.close()
@@ -732,19 +732,19 @@ def generate_samp(spice_filename, circuit_name):
 	spice_file.write(".SUBCKT " + circuit_name + " n_se n_in1 n_in2 n_out n_vdd n_gnd \n")
 
 
-	spice_file.write("M1 n_in1 n_se n_1_1 n_vdd pmos L=32n W=250n ")
+	spice_file.write("XM1 n_in1 n_se n_1_1 n_vdd lvtpch L=32n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M0 n_1_1 n_1_2 n_vdd n_vdd pmos L=65n W=100n ")
+	spice_file.write("XM0 n_1_1 n_1_2 n_vdd n_vdd lvtpch L=65n W=100n ")
 	spice_file.write("AS=100n*trans_diffusion_length AD=100n*trans_diffusion_length PS=100n+2*trans_diffusion_length PD=100n+2*trans_diffusion_length\n")	
-	spice_file.write("M2 n_1_2 n_1_1 n_vdd  n_vdd pmos L=65n W=100n ")
+	spice_file.write("XM2 n_1_2 n_1_1 n_vdd  n_vdd lvtpch L=65n W=100n ")
 	spice_file.write("AS=100n*trans_diffusion_length AD=100n*trans_diffusion_length PS=100n+2*trans_diffusion_length PD=100n+2*trans_diffusion_length\n")
-	spice_file.write("M3 n_in2 n_se n_1_2 n_vdd pmos L=32n W=250n ")
+	spice_file.write("XM3 n_in2 n_se n_1_2 n_vdd lvtpch L=32n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M4 n_1_1 n_1_2 n_gnd2 n_gnd nmos L=65n W=900n ")
+	spice_file.write("XM4 n_1_1 n_1_2 n_gnd2 n_gnd lvtnch L=65n W=900n ")
 	spice_file.write("AS=900n*trans_diffusion_length AD=900n*trans_diffusion_length PS=900n+2*trans_diffusion_length PD=900n+2*trans_diffusion_length\n")	
-	spice_file.write("M5 n_1_2 n_1_1 n_gnd2 n_gnd nmos L=65n W=900n ")
+	spice_file.write("XM5 n_1_2 n_1_1 n_gnd2 n_gnd lvtnch L=65n W=900n ")
 	spice_file.write("AS=900n*trans_diffusion_length AD=900n*trans_diffusion_length PS=900n+2*trans_diffusion_length PD=900n+2*trans_diffusion_length\n")	
-	spice_file.write("M6 n_gnd2 n_se n_gnd n_gnd nmos L=65n W=250n ")
+	spice_file.write("XM6 n_gnd2 n_se n_gnd n_gnd lvtnch L=65n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
 
 	spice_file.write("X_inv" + circuit_name + "_1 n_1_1 n_hang n_vdd n_gnd inv Wn=min_tran_width Wp=min_tran_width\n")
@@ -771,19 +771,19 @@ def generate_samp_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_se n_in1 n_in2 n_out n_vdd n_gnd \n")
 
-	spice_file.write("M1 n_in1 n_se n_1_1 n_vdd pmos_lp L=32n W=250n ")
+	spice_file.write("XM1 n_in1 n_se n_1_1 n_vdd hvtpch L=32n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M0 n_1_1 n_1_2 n_vdd n_vdd pmos_lp L=65n W=100n ")
+	spice_file.write("XM0 n_1_1 n_1_2 n_vdd n_vdd hvtpch L=65n W=100n ")
 	spice_file.write("AS=100n*trans_diffusion_length AD=100n*trans_diffusion_length PS=100n+2*trans_diffusion_length PD=100n+2*trans_diffusion_length\n")	
-	spice_file.write("M2 n_1_2 n_1_1 n_vdd  n_vdd pmos_lp L=65n W=100n ")
+	spice_file.write("XM2 n_1_2 n_1_1 n_vdd  n_vdd hvtpch L=65n W=100n ")
 	spice_file.write("AS=100n*trans_diffusion_length AD=100n*trans_diffusion_length PS=100n+2*trans_diffusion_length PD=100n+2*trans_diffusion_length\n")	
-	spice_file.write("M3 n_in2 n_se n_1_2 n_vdd pmos_lp L=32n W=250n ")
+	spice_file.write("XM3 n_in2 n_se n_1_2 n_vdd hvtpch L=32n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M4 n_1_1 n_1_2 n_gnd2 n_gnd nmos_lp L=65n W=900n ")
+	spice_file.write("XM4 n_1_1 n_1_2 n_gnd2 n_gnd hvtnch L=65n W=900n ")
 	spice_file.write("AS=900n*trans_diffusion_length AD=900n*trans_diffusion_length PS=900n+2*trans_diffusion_length PD=900n+2*trans_diffusion_length\n")
-	spice_file.write("M5 n_1_2 n_1_1 n_gnd2 n_gnd nmos_lp L=65n W=900n ")
+	spice_file.write("XM5 n_1_2 n_1_1 n_gnd2 n_gnd hvtnch L=65n W=900n ")
 	spice_file.write("AS=900n*trans_diffusion_length AD=900n*trans_diffusion_length PS=900n+2*trans_diffusion_length PD=900n+2*trans_diffusion_length\n")
-	spice_file.write("M6 n_gnd2 n_se n_gnd n_gnd nmos_lp L=65n W=250n ")
+	spice_file.write("XM6 n_gnd2 n_se n_gnd n_gnd hvtnch L=65n W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
 	#add the two inverters
 	#spice_file.write("X_inv" + circuit_name + "_1 n_1_1 n_hang n_vdd n_gnd inv Wn=inv_samp_output_1_nmos Wp=inv_samp_output_1_pmos\n")
@@ -899,13 +899,13 @@ def generate_pgateoutputcrossbar(spice_filename, circuit_name, maxwidth, def_use
 		spice_file.write("X_tgate n_1_2 n_0_0 n_vdd n_gnd n_vdd n_gnd RAM_tgate Wn=tgate_pgateoutputcrossbar_3_nmos Wp=tgate_pgateoutputcrossbar_3_pmos\n")
 	# Replacing this TGATE with a tri-state buffer to improve the output crossbar
 	else:
-		spice_file.write("M0 n_t_up n_gnd n_vdd n_vdd pmos L=22n W=inv_pgateoutputcrossbar_3_pmos ")
+		spice_file.write("XM0 n_t_up n_gnd n_vdd n_vdd lvtpch L=22n W=inv_pgateoutputcrossbar_3_pmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length\n")
-		spice_file.write("M1 n_0_0 n_1_2 n_t_up n_vdd pmos L=22n W=inv_pgateoutputcrossbar_3_pmos ")
+		spice_file.write("XM1 n_0_0 n_1_2 n_t_up n_vdd lvtpch L=22n W=inv_pgateoutputcrossbar_3_pmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length\n")
-		spice_file.write("M2 n_0_0 n_1_2 n_t_bot  n_gnd nmos L=22n W=inv_pgateoutputcrossbar_3_nmos ")
+		spice_file.write("XM2 n_0_0 n_1_2 n_t_bot  n_gnd lvtnch L=22n W=inv_pgateoutputcrossbar_3_nmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length\n")
-		spice_file.write("M3 n_t_bot n_vdd n_gnd n_gnd nmos L=22n W=inv_pgateoutputcrossbar_3_nmos ")
+		spice_file.write("XM3 n_t_bot n_vdd n_gnd n_gnd lvtnch L=22n W=inv_pgateoutputcrossbar_3_nmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length\n")
 	
 	# There is a wire with logn of pass transistors connected to it. I'll keep it simple
@@ -935,13 +935,13 @@ def generate_pgateoutputcrossbar(spice_filename, circuit_name, maxwidth, def_use
 		spice_file.write("X_2tgate n_2_2 n_20_0 n_vdd n_gnd n_vdd n_gnd RAM_tgate Wn=tgate_pgateoutputcrossbar_3_nmos Wp=tgate_pgateoutputcrossbar_3_pmos\n")
 	#replacing this TGATE with a tri-state buffer to improve the output crossbar
 	else:
-		spice_file.write("M02 n_2t_up n_gnd n_vdd n_vdd pmos L=22n W=inv_pgateoutputcrossbar_3_pmos ")
+		spice_file.write("XM02 n_2t_up n_gnd n_vdd n_vdd lvtpch L=22n W=inv_pgateoutputcrossbar_3_pmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length\n")
-		spice_file.write("M12 n_20_0 n_2_2 n_2t_up n_vdd pmos L=22n W=inv_pgateoutputcrossbar_3_pmos ")
+		spice_file.write("XM12 n_20_0 n_2_2 n_2t_up n_vdd lvtpch L=22n W=inv_pgateoutputcrossbar_3_pmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_pmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_pmos+2*trans_diffusion_length\n")
-		spice_file.write("M22 n_20_0 n_2_2 n_2t_bot  n_gnd nmos L=22n W=inv_pgateoutputcrossbar_3_nmos ")
+		spice_file.write("XM22 n_20_0 n_2_2 n_2t_bot  n_gnd lvtnch L=22n W=inv_pgateoutputcrossbar_3_nmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length\n")
-		spice_file.write("M32 n_2t_bot n_vdd n_gnd n_gnd nmos L=22n W=inv_pgateoutputcrossbar_3_nmos ")
+		spice_file.write("XM32 n_2t_bot n_vdd n_gnd n_gnd lvtnch L=22n W=inv_pgateoutputcrossbar_3_nmos ")
 		spice_file.write("AS=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length AD=inv_pgateoutputcrossbar_3_nmos*trans_diffusion_length PS=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length PD=inv_pgateoutputcrossbar_3_nmos+2*trans_diffusion_length\n")
 	
 	# There is a wire with logn of pass transistors connected to it. I'll keep it simple
@@ -982,32 +982,32 @@ def generate_writedriver(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_we n_din n_bl n_br n_vdd n_gnd\n")
 
-	#spice_file.write("M1 p_1_1 n_web n_vdd n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
-	#spice_file.write("M0 p_1_2 n_web n_vdd n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
-	#spice_file.write("M2 n_bl n_din p_1_1  n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
-	#spice_file.write("M3 n_br n_dinb p_1_2 n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM1 p_1_1 n_web n_vdd n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM0 p_1_2 n_web n_vdd n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM2 n_bl n_din p_1_1  n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM3 n_br n_dinb p_1_2 n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
 
-	#spice_file.write("M4 n_1_1 n_we n_gnd n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
-	#spice_file.write("M5 n_1_2 n_we n_gnd n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
-	#spice_file.write("M6 n_bl n_din n_1_1 n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
-	#spice_file.write("M7 n_br n_dinb n_1_2 n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM4 n_1_1 n_we n_gnd n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM5 n_1_2 n_we n_gnd n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM6 n_bl n_din n_1_1 n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM7 n_br n_dinb n_1_2 n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
 
-	spice_file.write("M1 p_1_1 n_web n_vdd n_vdd pmos L=gate_length W=150n ")
+	spice_file.write("XM1 p_1_1 n_web n_vdd n_vdd lvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
-	spice_file.write("M0 p_1_2 n_web n_vdd n_vdd pmos L=gate_length W=150n ")
+	spice_file.write("XM0 p_1_2 n_web n_vdd n_vdd lvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
-	spice_file.write("M2 n_bl n_din p_1_1  n_vdd pmos L=gate_length W=150n ")
+	spice_file.write("XM2 n_bl n_din p_1_1  n_vdd lvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
-	spice_file.write("M3 n_br n_dinb p_1_2 n_vdd pmos L=gate_length W=150n ")
+	spice_file.write("XM3 n_br n_dinb p_1_2 n_vdd lvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
 
-	spice_file.write("M4 n_1_1 n_we n_gnd n_gnd nmos L=gate_length W=250n ")
+	spice_file.write("XM4 n_1_1 n_we n_gnd n_gnd lvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M5 n_1_2 n_we n_gnd n_gnd nmos L=gate_length W=250n ")
+	spice_file.write("XM5 n_1_2 n_we n_gnd n_gnd lvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M6 n_bl n_din n_1_1 n_gnd nmos L=gate_length W=250n ")
+	spice_file.write("XM6 n_bl n_din n_1_1 n_gnd lvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M7 n_br n_dinb n_1_2 n_gnd nmos L=gate_length W=250n ")
+	spice_file.write("XM7 n_br n_dinb n_1_2 n_gnd lvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
 	#add the two inverters
 
@@ -1043,32 +1043,32 @@ def generate_writedriver_lp(spice_filename, circuit_name):
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_we n_din n_bl n_br n_vdd n_gnd\n")
 
-	#spice_file.write("M1 p_1_1 n_web n_vdd n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
-	#spice_file.write("M0 p_1_2 n_web n_vdd n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
-	#spice_file.write("M2 n_bl n_din p_1_1  n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
-	#spice_file.write("M3 n_br n_dinb p_1_2 n_vdd pmos L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM1 p_1_1 n_web n_vdd n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM0 p_1_2 n_web n_vdd n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM2 n_bl n_din p_1_1  n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
+	#spice_file.write("XM3 n_br n_dinb p_1_2 n_vdd lvtpch L=gate_length W=tgate_writedriver_3_pmos\n")
 
-	#spice_file.write("M4 n_1_1 n_we n_gnd n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
-	#spice_file.write("M5 n_1_2 n_we n_gnd n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
-	#spice_file.write("M6 n_bl n_din n_1_1 n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
-	#spice_file.write("M7 n_br n_dinb n_1_2 n_gnd nmos L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM4 n_1_1 n_we n_gnd n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM5 n_1_2 n_we n_gnd n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM6 n_bl n_din n_1_1 n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
+	#spice_file.write("XM7 n_br n_dinb n_1_2 n_gnd lvtnch L=gate_length W=tgate_writedriver_3_nmos\n")
 
-	spice_file.write("M1 p_1_1 n_web n_vdd n_vdd pmos_lp L=gate_length W=150n ")
+	spice_file.write("XM1 p_1_1 n_web n_vdd n_vdd hvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
-	spice_file.write("M0 p_1_2 n_web n_vdd n_vdd pmos_lp L=gate_length W=150n ")
+	spice_file.write("XM0 p_1_2 n_web n_vdd n_vdd hvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
-	spice_file.write("M2 n_bl n_din p_1_1  n_vdd pmos_lp L=gate_length W=150n ")
+	spice_file.write("XM2 n_bl n_din p_1_1  n_vdd hvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
-	spice_file.write("M3 n_br n_dinb p_1_2 n_vdd pmos_lp L=gate_length W=150n ")
+	spice_file.write("XM3 n_br n_dinb p_1_2 n_vdd hvtpch L=gate_length W=150n ")
 	spice_file.write("AS=150n*trans_diffusion_length AD=150n*trans_diffusion_length PS=150n+2*trans_diffusion_length PD=150n+2*trans_diffusion_length\n")	
 
-	spice_file.write("M4 n_1_1 n_we n_gnd n_gnd nmos_lp L=gate_length W=250n ")
+	spice_file.write("XM4 n_1_1 n_we n_gnd n_gnd hvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M5 n_1_2 n_we n_gnd n_gnd nmos_lp L=gate_length W=250n ")
+	spice_file.write("XM5 n_1_2 n_we n_gnd n_gnd hvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M6 n_bl n_din n_1_1 n_gnd nmos_lp L=gate_length W=250n ")
+	spice_file.write("XM6 n_bl n_din n_1_1 n_gnd hvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
-	spice_file.write("M7 n_br n_dinb n_1_2 n_gnd nmos_lp L=gate_length W=250n ")
+	spice_file.write("XM7 n_br n_dinb n_1_2 n_gnd hvtnch L=gate_length W=250n ")
 	spice_file.write("AS=250n*trans_diffusion_length AD=250n*trans_diffusion_length PS=250n+2*trans_diffusion_length PD=250n+2*trans_diffusion_length\n")	
 	#add the two inverters
 	#add the two inverters
@@ -1104,11 +1104,11 @@ def generate_precharge(spice_filename, circuit_name):
 	spice_file.write("* " + circuit_name + " subcircuit precharge and equalization \n")
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_precharge_bar n_bl n_blbar n_vdd n_gnd\n")
-	spice_file.write("M1 n_bl n_precharge_bar n_vdd n_vdd pmos L=gate_length W=ptran_precharge_side_nmos ")
+	spice_file.write("XM1 n_bl n_precharge_bar n_vdd n_vdd lvtpch L=gate_length W=ptran_precharge_side_nmos ")
 	spice_file.write("AS=ptran_precharge_side_nmos*trans_diffusion_length AD=ptran_precharge_side_nmos*trans_diffusion_length PS=ptran_precharge_side_nmos+2*trans_diffusion_length PD=ptran_precharge_side_nmos+2*trans_diffusion_length\n")
-	spice_file.write("M0 n_blbar n_precharge_bar n_vdd n_vdd pmos L=gate_length W=ptran_precharge_side_nmos ")
+	spice_file.write("XM0 n_blbar n_precharge_bar n_vdd n_vdd lvtpch L=gate_length W=ptran_precharge_side_nmos ")
 	spice_file.write("AS=ptran_precharge_side_nmos*trans_diffusion_length AD=ptran_precharge_side_nmos*trans_diffusion_length PS=ptran_precharge_side_nmos+2*trans_diffusion_length PD=ptran_precharge_side_nmos+2*trans_diffusion_length\n")
-	spice_file.write("M2 n_bl n_precharge_bar n_blbar n_vdd pmos L=gate_length W=ptran_equalization_nmos ")
+	spice_file.write("XM2 n_bl n_precharge_bar n_blbar n_vdd lvtpch L=gate_length W=ptran_equalization_nmos ")
 	spice_file.write("AS=ptran_equalization_nmos*trans_diffusion_length AD=ptran_equalization_nmos*trans_diffusion_length PS=ptran_equalization_nmos+2*trans_diffusion_length PD=ptran_equalization_nmos+2*trans_diffusion_length\n")
 	spice_file.write(".ENDS\n\n\n")
 	spice_file.close()
@@ -1131,11 +1131,11 @@ def generate_precharge_lp(spice_filename, circuit_name):
 	spice_file.write("* " + circuit_name + " subcircuit low power precharge and equalization \n")
 	spice_file.write("******************************************************************************************\n")
 	spice_file.write(".SUBCKT " + circuit_name + " n_precharge_bar n_bl n_blbar n_vdd n_gnd\n")
-	spice_file.write("M1 n_bl n_precharge_bar n_vdd n_vdd pmos_lp L=gate_length W=ptran_precharge_side_nmos ")
+	spice_file.write("XM1 n_bl n_precharge_bar n_vdd n_vdd hvtpch L=gate_length W=ptran_precharge_side_nmos ")
 	spice_file.write("AS=ptran_precharge_side_nmos*trans_diffusion_length AD=ptran_precharge_side_nmos*trans_diffusion_length PS=ptran_precharge_side_nmos+2*trans_diffusion_length PD=ptran_precharge_side_nmos+2*trans_diffusion_length\n")
-	spice_file.write("M0 n_blbar n_precharge_bar n_vdd n_vdd pmos_lp L=gate_length W=ptran_precharge_side_nmos ")
+	spice_file.write("XM0 n_blbar n_precharge_bar n_vdd n_vdd hvtpch L=gate_length W=ptran_precharge_side_nmos ")
 	spice_file.write("AS=ptran_precharge_side_nmos*trans_diffusion_length AD=ptran_precharge_side_nmos*trans_diffusion_length PS=ptran_precharge_side_nmos+2*trans_diffusion_length PD=ptran_precharge_side_nmos+2*trans_diffusion_length\n")
-	spice_file.write("M2 n_bl n_precharge_bar n_blbar n_vdd pmos_lp L=gate_length W=ptran_precharge_side_nmos ")
+	spice_file.write("XM2 n_bl n_precharge_bar n_blbar n_vdd hvtpch L=gate_length W=ptran_precharge_side_nmos ")
 	spice_file.write("AS=ptran_equalization_nmos*trans_diffusion_length AD=ptran_equalization_nmos*trans_diffusion_length PS=ptran_equalization_nmos+2*trans_diffusion_length PD=ptran_equalization_nmos+2*trans_diffusion_length\n")
 	spice_file.write(".ENDS\n\n\n")
 	spice_file.close()

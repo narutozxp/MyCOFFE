@@ -23,11 +23,11 @@ def generate_ptran_2_input_select_d_ff(spice_filename, use_finfet):
 	spice_file.write("Xwire_ff_input_out n_2_1 n_2_2 wire Rw=wire_ff_input_out_res Cw=wire_ff_input_out_cap\n")    
 	spice_file.write("Xtgate_ff_1 n_2_2 n_3_1 n_clk_n n_clk n_vdd n_gnd tgate Wn=tgate_ff_1_nmos Wp=tgate_ff_1_pmos\n")
 	if not use_finfet :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length W=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length W=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length W=tran_ff_reset_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length nfin=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length nfin=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length nfin=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length nfin=tran_ff_reset_nmos\n")
 
 	spice_file.write("Xwire_ff_tgate_1_out n_3_1 n_3_2 wire Rw=wire_ff_tgate_1_out_res Cw=wire_ff_tgate_1_out_cap\n")
 	spice_file.write("Xinv_ff_cc1_1 n_3_2 n_4_1 n_vdd n_gnd inv Wn=inv_ff_cc1_1_nmos Wp=inv_ff_cc1_1_pmos\n")
@@ -36,11 +36,11 @@ def generate_ptran_2_input_select_d_ff(spice_filename, use_finfet):
 	spice_file.write("* Second T-gate and cross-coupled inverters\n")
 	spice_file.write("Xtgate_ff_2 n_4_2 n_5_1 n_clk n_clk_n n_vdd n_gnd tgate Wn=tgate_ff_2_nmos Wp=tgate_ff_2_pmos\n")
 	if not use_finfet :
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length W=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length W=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length W=tran_ff_set_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length nfin=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length nfin=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length nfin=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length nfin=tran_ff_set_nmos\n")
 
 	spice_file.write("Xwire_ff_tgate_2_out n_5_1 n_5_2 wire Rw=wire_ff_tgate_2_out_res Cw=wire_ff_tgate_2_out_cap\n")
 	spice_file.write("Xinv_ff_cc2_1 n_5_2 n_6_1 n_vdd n_gnd inv Wn=inv_ff_cc2_1_nmos Wp=inv_ff_cc2_1_pmos\n")
@@ -107,11 +107,11 @@ def generate_ptran_d_ff(spice_filename, use_finfet):
 	spice_file.write("Xwire_ff_input_out n_2_1 n_2_2 wire Rw=wire_ff_input_out_res Cw=wire_ff_input_out_cap\n")    
 	spice_file.write("Xtgate_ff_1 n_2_2 n_3_1 n_clk_n n_clk n_vdd n_gnd tgate Wn=tgate_ff_1_nmos Wp=tgate_ff_1_pmos\n")
 	if not use_finfet :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length W=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length W=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length W=tran_ff_reset_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length nfin=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length nfin=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length nfin=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length nfin=tran_ff_reset_nmos\n")
 
 	spice_file.write("Xwire_ff_tgate_1_out n_3_1 n_3_2 wire Rw=wire_ff_tgate_1_out_res Cw=wire_ff_tgate_1_out_cap\n")
 	spice_file.write("Xinv_ff_cc1_1 n_3_2 n_4_1 n_vdd n_gnd inv Wn=inv_ff_cc1_1_nmos Wp=inv_ff_cc1_1_pmos\n")
@@ -120,11 +120,11 @@ def generate_ptran_d_ff(spice_filename, use_finfet):
 	spice_file.write("* Second T-gate and cross-coupled inverters\n")
 	spice_file.write("Xtgate_ff_2 n_4_2 n_5_1 n_clk n_clk_n n_vdd n_gnd tgate Wn=tgate_ff_2_nmos Wp=tgate_ff_2_pmos\n")
 	if not use_finfet : 
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length W=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length W=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length W=tran_ff_set_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length W=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length W=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length W=tran_ff_set_nmos\n")
 	spice_file.write("Xwire_ff_tgate_2_out n_5_1 n_5_2 wire Rw=wire_ff_tgate_2_out_res Cw=wire_ff_tgate_2_out_cap\n")
 	spice_file.write("Xinv_ff_cc2_1 n_5_2 n_6_1 n_vdd n_gnd inv Wn=inv_ff_cc2_1_nmos Wp=inv_ff_cc2_1_pmos\n")
 	spice_file.write("Xinv_ff_cc2_2 n_6_1 n_5_2 n_vdd n_gnd inv Wn=inv_ff_cc2_2_nmos Wp=inv_ff_cc2_2_pmos\n")
@@ -206,11 +206,11 @@ def generate_tgate_2_input_select_d_ff(spice_filename, use_finfet):
 	spice_file.write("Xwire_ff_input_out n_2_1 n_2_2 wire Rw=wire_ff_input_out_res Cw=wire_ff_input_out_cap\n")    
 	spice_file.write("Xtgate_ff_1 n_2_2 n_3_1 n_clk_n n_clk n_vdd n_gnd tgate Wn=tgate_ff_1_nmos Wp=tgate_ff_1_pmos\n")
 	if not use_finfet :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length W=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length W=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length W=tran_ff_reset_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length nfin=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length nfin=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length nfin=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length nfin=tran_ff_reset_nmos\n")
 
 	spice_file.write("Xwire_ff_tgate_1_out n_3_1 n_3_2 wire Rw=wire_ff_tgate_1_out_res Cw=wire_ff_tgate_1_out_cap\n")
 	spice_file.write("Xinv_ff_cc1_1 n_3_2 n_4_1 n_vdd n_gnd inv Wn=inv_ff_cc1_1_nmos Wp=inv_ff_cc1_1_pmos\n")
@@ -219,11 +219,11 @@ def generate_tgate_2_input_select_d_ff(spice_filename, use_finfet):
 	spice_file.write("* Second T-gate and cross-coupled inverters\n")
 	spice_file.write("Xtgate_ff_2 n_4_2 n_5_1 n_clk n_clk_n n_vdd n_gnd tgate Wn=tgate_ff_2_nmos Wp=tgate_ff_2_pmos\n")
 	if not use_finfet :
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length W=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length W=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length W=tran_ff_set_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length nfin=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length nfin=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length nfin=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length nfin=tran_ff_set_nmos\n")
 
 	spice_file.write("Xwire_ff_tgate_2_out n_5_1 n_5_2 wire Rw=wire_ff_tgate_2_out_res Cw=wire_ff_tgate_2_out_cap\n")
 	spice_file.write("Xinv_ff_cc2_1 n_5_2 n_6_1 n_vdd n_gnd inv Wn=inv_ff_cc2_1_nmos Wp=inv_ff_cc2_1_pmos\n")
@@ -291,11 +291,11 @@ def generate_tgate_d_ff(spice_filename, use_finfet):
 	spice_file.write("Xwire_ff_input_out n_2_1 n_2_2 wire Rw=wire_ff_input_out_res Cw=wire_ff_input_out_cap\n")    
 	spice_file.write("Xtgate_ff_1 n_2_2 n_3_1 n_clk_n n_clk n_vdd n_gnd tgate Wn=tgate_ff_1_nmos Wp=tgate_ff_1_pmos\n")
 	if not use_finfet :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length W=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length W=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length W=tran_ff_reset_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd pmos L=gate_length nfin=tran_ff_set_n_pmos\n")
-		spice_file.write("MNtran_ff_reset n_3_1 n_reset n_gnd n_gnd nmos L=gate_length nfin=tran_ff_reset_nmos\n")
+		spice_file.write("XMPtran_ff_set_n n_3_1 n_set_n n_vdd n_vdd lvtpch L=gate_length nfin=tran_ff_set_n_pmos\n")
+		spice_file.write("XMNtran_ff_reset n_3_1 n_reset n_gnd n_gnd lvtnch L=gate_length nfin=tran_ff_reset_nmos\n")
 
 	spice_file.write("Xwire_ff_tgate_1_out n_3_1 n_3_2 wire Rw=wire_ff_tgate_1_out_res Cw=wire_ff_tgate_1_out_cap\n")
 	spice_file.write("Xinv_ff_cc1_1 n_3_2 n_4_1 n_vdd n_gnd inv Wn=inv_ff_cc1_1_nmos Wp=inv_ff_cc1_1_pmos\n")
@@ -304,11 +304,11 @@ def generate_tgate_d_ff(spice_filename, use_finfet):
 	spice_file.write("* Second T-gate and cross-coupled inverters\n")
 	spice_file.write("Xtgate_ff_2 n_4_2 n_5_1 n_clk n_clk_n n_vdd n_gnd tgate Wn=tgate_ff_2_nmos Wp=tgate_ff_2_pmos\n")
 	if not use_finfet : 
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length W=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length W=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length W=tran_ff_set_nmos\n")
 	else :
-		spice_file.write("MPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd pmos L=gate_length W=tran_ff_reset_n_pmos\n")
-		spice_file.write("MNtran_ff_set n_5_1 n_set n_gnd n_gnd nmos L=gate_length W=tran_ff_set_nmos\n")
+		spice_file.write("XMPtran_ff_reset_n n_5_1 n_reset_n n_vdd n_vdd lvtpch L=gate_length W=tran_ff_reset_n_pmos\n")
+		spice_file.write("XMNtran_ff_set n_5_1 n_set n_gnd n_gnd lvtnch L=gate_length W=tran_ff_set_nmos\n")
 	spice_file.write("Xwire_ff_tgate_2_out n_5_1 n_5_2 wire Rw=wire_ff_tgate_2_out_res Cw=wire_ff_tgate_2_out_cap\n")
 	spice_file.write("Xinv_ff_cc2_1 n_5_2 n_6_1 n_vdd n_gnd inv Wn=inv_ff_cc2_1_nmos Wp=inv_ff_cc2_1_pmos\n")
 	spice_file.write("Xinv_ff_cc2_2 n_6_1 n_5_2 n_vdd n_gnd inv Wn=inv_ff_cc2_2_nmos Wp=inv_ff_cc2_2_pmos\n")
